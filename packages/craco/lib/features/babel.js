@@ -50,14 +50,16 @@ function applyLoaderOptions(loader, loaderOptions, context) {
 function overrideLoader(match, cracoConfig, context) {
     const { presets, plugins, loaderOptions } = cracoConfig.babel;
 
-    if (presets) {
-        addPresets(match.loader, presets);
-    }
+    if (match.loader.customize){
+        if (presets) {
+            addPresets(match.loader, presets);
+        }
 
-    if (plugins) {
-        addPlugins(match.loader, plugins);
+        if (plugins) {
+            addPlugins(match.loader, plugins);
+        }
     }
-
+        
     if (loaderOptions) {
         applyLoaderOptions(match.loader, loaderOptions, context);
     }
